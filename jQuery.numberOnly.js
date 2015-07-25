@@ -43,7 +43,7 @@
 				var keyCode = e.keyCode || e.which,
 					ctrlCmd = e.ctrlKey || (e.metaKey && !e.ctrlKey);  // detect CTRL or ⌘ (MAC)
 		
-				if (o.keyCodeMode) {
+				if (o.keyCodeMode && typeof(console) === "object") {
 					console.log(keyCode);
 				}
 		
