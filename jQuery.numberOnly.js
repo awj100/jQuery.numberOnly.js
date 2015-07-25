@@ -18,7 +18,7 @@
 			keyCodeMode: false
         }, o);
 		
-        return this.filter("input, textarea").each(function() {
+        this.filter("input, textarea").each(function() {
 
 			var permittedKeyCodes = [
 						0,
