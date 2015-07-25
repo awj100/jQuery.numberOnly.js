@@ -22,7 +22,7 @@ $(".number-only").numberOnly();
 * `keyCodeMode`: when set to `true`, typing *any* key will result in that key's character code being written to the browser's console. The intention is to make it easier to add to the 'permitted' array of permitted characters. **NOTE**: This is not included in the minified version, only in the *.debug.js* version. Default: `false`.
 
 #### Example
-The following snippet demonstrates how to add **numberOnly** to all elements with the CSS class "*number-only*", while also specifying that hyphens (`-`) are permitted, but that pasting is *not* permitted:
+The following snippet demonstrates how to add **numberOnly** to all elements with the CSS class "*number-only*", while also specifying that hyphens (`-`) are permitted but that pasting is *not* permitted:
 
 ```
 $(".number-only").numberOnly({
