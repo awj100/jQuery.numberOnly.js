@@ -2,7 +2,7 @@
 * This plugin allows only the digits 0 to 9 to be typed into an <input /> or <textarea /> element, along with optional extra characters (indicated by their key codes).
 * This plugin also optionally allows disabling of the clipboard-related events activities pasting, copying and cutting.
 * 
-* Developed by Andrew Jameson and Made available under the MIT License (https://raw.githubusercontent.com/awj100/jQuery.numberOnly.js/master/LICENSE).
+* Developed by Andrew Jameson and made available under the MIT License (https://raw.githubusercontent.com/awj100/jQuery.numberOnly.js/master/LICENSE).
 */
 
 (function($) {
