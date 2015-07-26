@@ -1,4 +1,5 @@
 /*
+* jQuery.numberOnly (https://github.com/awj100/jQuery.numberOnly.js)
 * This plugin allows only the digits 0 to 9 to be typed into an <input /> or <textarea /> element, along with optional extra characters (indicated by their key codes).
 * This plugin also optionally allows disabling of the clipboard-related events activities pasting, copying and cutting.
 * 
