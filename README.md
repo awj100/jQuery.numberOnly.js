@@ -10,7 +10,7 @@ $(".number-only").numberOnly();
 
 #### Notes on usage
 * Although **numberOnly** works only on `<input/>` and `<textarea/>` elements, it also fully supports chaining on *all* elements returned by the specified selecter, whether or not **numberOnly** is running on them.
-* **numberOnly** will not prevent the action of certain operational keys. This includes `<Backspace>`, `<Delete>`, `←` and `→`.
+* **numberOnly** will not prevent the action of certain operational keys. This includes `<Backspace>`, `<Del>`, `←` and `→`.
 
 ## Options
 **numberOnly** contains several options, as well as permitting only numbers to be specified.
