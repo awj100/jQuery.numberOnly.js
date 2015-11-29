@@ -4,6 +4,8 @@ A jQuery plugin to permit only numerical digits and specified other characters b
 ## Usage
 Simply add a call to `numberOnly` on any jQuery selecter:
 
+** Important: ** v.1.2.0 is not fully backward-compatible with v1.1.0: the `max` and `maxExceededClass` options have been refactored. See the **Options** section below.
+
 ```
 $(".number-only").numberOnly();
 ```
@@ -20,8 +22,14 @@ $(".number-only").numberOnly();
 * `canEnter`: a boolean parameter indicating whether hitting `<Enter>` will propagate a DOM event.
 * `canPaste`: a boolean parameter indicating whether the value in the clipboard may be pasted to the DOM element. When pasting, the value in the clipboard is subject to the same rules as when typing. Default: `true`.
 * `keyCodeMode`: when set to `true`, typing *any* key will result in that key's character code being written to the browser's console. The intention is to make it easier to add to the `permitted` array of permitted characters. **NOTE**: This is *not* included in the minified version. Default: `false`.
-* `max`: an integer indicating the maximum value allowable. Default `undefined`.
-* `maxExceededClass`: a string denoting a CSS class which shall be added to the DOM element should the specified `max` value be exceeded. **Note:** If a `max` value is specified without any value specified for `maxExceededClass`, the DOM element will not permit any values to be typed or pasted if such an action would cause the value of the element to exceed `max`. However, if `maxExceededClass` _does_ have a CSS class (_i.e._, a string value) then the DOM element _will_ permit further values to be typed or pasted, even after the `max` value has been exceeded. In this latter case, the specified `maxExceededClass` value will be added to the DOM element. Default `undefined`.
+* `max`: an object containing the following properties
+  * `limit`: a number specifying a threshold value. Default: `undefined`.
+  * `callback`: a function which will be called when `limit` is both exceeded and, should `limit` have been exceeded, again when the value no longer exceeds `limit`. Default: `undefined`.
+
+    The function will be passed the following arguments:
+    * `exceeded`: a boolean value indicating in which direction the value has crossed the threshold (`true` = greater than `limit`, `false` = less than or equal to `limit`).
+    * `e`: the [jQuery event object](https://api.jquery.com/category/events/event-object/). From this can be obtained the context DOM element.
+    * `newVal`: the latest value in the context DOM element.
 
 #### Examples
 The following snippet demonstrates how to run **jQuery.numberOnly** on all elements with the CSS class "*number-only*", while also specifying that hyphens (`-`) are permitted but that pasting is *not* permitted.
@@ -33,20 +41,48 @@ $(".number-only").numberOnly({
 });
 ```
 
-Here, we specify that the `max` value permitted is 100. In this case, because `maxExceededClass` has not been specified, the DOM element will permit no further values to be typed or pasted if such an action would cause the DOM element to contain a value greater than 100.
+Here, we specify that the `max.limit` value permitted is 100. In this case, because `max.callback` has not been specified, the DOM element will permit no further values to be typed or pasted if such an action would cause the DOM element to contain a value greater than 100.
 
 ```
 $(".number-only").numberOnly({
-  max: 100
+  max: {
+    limit: 100
+  }
 });
 ```
 
-In this example, we specify that the `max` value permitted is 100, as well as specifying a CSS class to be added to the DOM element should its value exceed 100. Because a CSS class has been specified, the DOM element will _not_ prevent additional values from being appended to the existing value.
+In this example, we specify that the `max.limit` value permitted is 100, as well as specifying a callback function to be called when `limit` is exceeded. Because a callback has been specified, the DOM element will _not_ prevent additional values from being appended to the existing value.
 
 ```
 $(".number-only").numberOnly({
-  max: 100,
-  maxExceededClass: "exceeded"
+  max: {
+    limit: 100,
+    callback: function(exceeded, e, newVal) {
+				if (exceeded) {
+					console.log("exceeded with value " + newVal);
+					$(e.currentTarget).addClass("error");
+				} else {
+					console.log(newVal + " is acceptable");
+					$(e.currentTarget).removeClass("error");
+				}
+  }
+});
+```
+
+In this last example, we again specify that the `max.limit` value permitted is 100 and a callback function which, unlike the previous example, will prevent additional key-presses from being displayed if `max.limit` is exceeded.
+
+```
+$(".number-only").numberOnly({
+  max: {
+    limit: 100,
+    callback: function(exceeded, e, newVal) {
+				if (exceeded) {
+					console.log("exceeded with value " + newVal);
+					e.preventDefault();
+				} else {
+					console.log(newVal + " is acceptable");
+				}
+  }
 });
 ```
 
