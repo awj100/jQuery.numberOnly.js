@@ -30,6 +30,8 @@ $(".number-only").numberOnly();
     * `exceeded`: a boolean value indicating in which direction the value has crossed the threshold (`true` = greater than `limit`, `false` = less than or equal to `limit`).
     * `e`: the [jQuery event object](https://api.jquery.com/category/events/event-object/). From this can be obtained the context DOM element.
     * `newVal`: the latest value in the context DOM element.
+    
+  **Important:** if the `permitted` option has been used with additional permitted keys (_i.e._, non-numerical keys) then `max.limit` will be set to `undefined`.
 
 #### Examples
 The following snippet demonstrates how to run **jQuery.numberOnly** on all elements with the CSS class "*number-only*", while also specifying that hyphens (`-`) are permitted but that pasting is *not* permitted.
