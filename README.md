@@ -1,3 +1,5 @@
+**_v1.2.0 is a beta version._**
+
 # jQuery.numberOnly.js
 A jQuery plugin to permit only numerical digits and specified other characters being entered into an HTML element.
 
