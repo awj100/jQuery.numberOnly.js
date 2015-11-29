@@ -4,7 +4,7 @@ A jQuery plugin to permit only numerical digits and specified other characters b
 ## Usage
 Simply add a call to `numberOnly` on any jQuery selecter:
 
-** Important: ** v.1.2.0 is not fully backward-compatible with v1.1.0: the `max` and `maxExceededClass` options have been refactored. See the **Options** section below.
+**Important:** v.1.2.0 is not fully backward-compatible with v1.1.0: the `max` and `maxExceededClass` options have been refactored. See the **Options** section below.
 
 ```
 $(".number-only").numberOnly();
